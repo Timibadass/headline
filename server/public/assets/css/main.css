@@ -61,7 +61,7 @@ ul {
     flex: 1;
     min-width: 250px;
     padding: 10px;
-    max-width: 380px;
+    /* max-width: 380px; */
     min-height: 320px;
     margin-bottom: 10px;
     border: 1px solid blue;
