@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Pangolin');
+
 body {
     padding: 0;
     margin: 0;
+    font-family: 'Pangolin', cursive;
 }
 
 .header {
@@ -42,11 +45,40 @@ ul {
     margin: auto;
     margin-top: 20px;
     min-height: 300px;
-    border: 2px dotted blue; 
 }
 
 .headlines > h1 {
     text-align: center;
+}
+
+form {
+    height: 80px;
+    text-align: center;
+    max-width: 280px;
+    padding: 10px;
+}
+
+form > label {
+    display: block;
+    margin-bottom: 10px; 
+}
+
+form > input[type='submit'] {
+    width: 60px;
+    height: 30px;
+    background-color: rgba(30, 86, 207, 0.705);
+    color: #fff;
+    border-radius: 30px;
+    border: 0;
+}
+
+form > select {
+    min-width: 70px;
+    border-radius: 30px;
+    border:0;
+    height: 30px;
+    background-color: rgba(219, 32, 188, 0.603);
+    color: #fff;
 }
 
 .articles {
@@ -61,14 +93,13 @@ ul {
     flex: 1;
     min-width: 250px;
     padding: 10px;
-    /* max-width: 380px; */
-    min-height: 320px;
+    max-width: 350px;
+    height: 500px;
     margin-bottom: 10px;
-    border: 1px solid blue;
 }
 
 .article_image {
-    width: 70%;
+    width: 80%;
     height: 40%;
     margin: auto;
     display: block;
@@ -79,6 +110,7 @@ ul {
 .error_message {
     color: red;
     height: 100px;
+    text-align: center;
     width: 80%;
     max-width: 300px;
     background-color: palevioletred;

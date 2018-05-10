@@ -29,69 +29,75 @@
     <main class="main__content">
         <div class="headlines">
             <h1>Top Headlines</h1>
+            <h4>Filter by</h4>
             <form action="" method="get">
-                <label>Filter by</label>
+                <label>Country</label>
                 <select name="country" id="country">
                     <option value="">country</option>
-                    <option value="ae">ae</option>
-                    <option value="ar">ar</option>
-                    <option value="at">at</option>
-                    <option value="au">au</option>
-                    <option value="be">be</option>
-                    <option value="bg">bg</option>
-                    <option value="br">br</option>
-                    <option value="ca">ca</option>
-                    <option value="ch">ch</option>
-                    <option value="cn">cn</option>
-                    <option value="co">co</option>
-                    <option value="cu">cu</option>
-                    <option value="cz">cz</option>
-                    <option value="de">de</option>
-                    <option value="eg">eg</option>
-                    <option value="fr">fr</option>
-                    <option value="gb">gb</option>
-                    <option value="gr">gr</option>
-                    <option value="hk">hk</option>
-                    <option value="hu">hu</option>
-                    <option value="id">id</option>
-                    <option value="ie">ie</option>
-                    <option value="il">il</option>
-                    <option value="in">in</option>
-                    <option value="it">it</option>
-                    <option value="jp">jp</option>
-                    <option value="kr">kr</option>
-                    <option value="lt">lt</option>
-                    <option value="lv">lv</option>
-                    <option value="ma">ma</option>
-                    <option value="mx">mx</option>
-                    <option value="my">my</option>
-                    <option value="ng">ng</option>
-                    <option value="nl">nl</option>
-                    <option value="no">no</option>
-                    <option value="nz">nz</option>
-                    <option value="ph">ph</option>
-                    <option value="pl">pl</option>
-                    <option value="ro">ro</option>
-                    <option value="rs">rs</option>
-                    <option value="ru">ru</option>
-                    <option value="sa">sa</option>
-                    <option value="se">se</option>
-                    <option value="sg">sg</option>
-                    <option value="si">si</option>
-                    <option value="sk">sk</option>
-                    <option value="th">th</option>
-                    <option value="tr">tr</option>
-                    <option value="tw">tw</option>
-                    <option value="ua">ua</option>
-                    <option value="us">us</option>
-                    <option value="ve">ve</option>
-                    <option value="za">za</option>
+                    <option value="ae">UAE</option>
+                    <option value="ar">Argentina</option>
+                    <option value="at">Austria</option>
+                    <option value="au">Australia</option>
+                    <option value="be">Belgium</option>
+                    <option value="bg">Bulgaria</option>
+                    <option value="br">Brazil</option>
+                    <option value="ca">Canada</option>
+                    <option value="ch">Switzerland</option>
+                    <option value="cn">China</option>
+                    <option value="co">Colombia</option>
+                    <option value="cu">Cuba</option>
+                    <option value="cz">Czech Republic</option>
+                    <option value="de">Germany</option>
+                    <option value="eg">Egypt</option>
+                    <option value="fr">France</option>
+                    <option value="gb">United Kingdom</option>
+                    <option value="gr">Greece</option>
+                    <option value="hk">Hong Kong</option>
+                    <option value="hu">Hungary</option>
+                    <option value="id">Indonesia</option>
+                    <option value="ie">Ireland</option>
+                    <option value="il">Israel</option>
+                    <option value="in">India</option>
+                    <option value="it">Italy</option>
+                    <option value="jp">Japan</option>
+                    <option value="kr">South Korea</option>
+                    <option value="lt">Lithuania</option>
+                    <option value="lv">Latvia</option>
+                    <option value="ma">Morocco</option>
+                    <option value="mx">Mexico</option>
+                    <option value="my">Malaysia</option>
+                    <option value="ng">Nigeria</option>
+                    <option value="nl">Netherlands</option>
+                    <option value="no">Norway</option>
+                    <option value="nz">New zealand</option>
+                    <option value="ph">Philippines</option>
+                    <option value="pl">Poland</option>
+                    <option value="ro">Romania</option>
+                    <option value="rs">Serbia</option>
+                    <option value="ru">Russia</option>
+                    <option value="sa">Saudi Arabia</option>
+                    <option value="se">Sweden</option>
+                    <option value="sg">Singapore</option>
+                    <option value="si">Slovenia</option>
+                    <option value="sk">Slovakia</option>
+                    <option value="th">Thailand</option>
+                    <option value="tr">Turkey</option>
+                    <option value="tw">Taiwan</option>
+                    <option value="ua">Ukraine</option>
+                    <option value="us">United States</option>
+                    <option value="ve">Venuzuela</option>
+                    <option value="za">South Africa</option>
                 </select>
-                <input type="submit" id="selectCountry" value="filter">
+                <input type="submit" name="source" id="selectCountry" value="Filter">
+            </form>
+            <form action="" method="GET">
+                <label for="Sources">Sources</label>
+                <select name="sources" id="sources"></select>
+                <input type="submit" value="Filter" id="sourcesButton">
             </form>
             <div class="articles"></div>
         </div>
     </main>
-    <script src="./assets/js/main.js"></script>
+    <script defer src="./assets/js/main.js"></script>
 </body>
 </html>

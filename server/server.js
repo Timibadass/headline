@@ -11,6 +11,6 @@ const server = app.listen(app.get('port'), () => {
   console.log(`Express running → PORT ${server.address().port}`);
 });
 
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(__dirname  + '/public/index.html');
 });

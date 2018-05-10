@@ -2,23 +2,34 @@ const baseUrl = 'https://newsapi.org/v2/top-headlines?';
 const apiKey = 'b9c8cf1cf6654d4781c581c5e07654d4';
 const countryInput = document.querySelector('#country');
 let country = countryInput.value || 'ng';
-const button = document.querySelector('#selectCountry');
+const countryButton = document.querySelector('#selectCountry');
+const sourceButton = document.querySelector('#sourcesButton');
+const sourceForm = document.querySelector('#sources');
+let sourceValue;
 const articlesDiv = document.querySelector('.articles');
 let url = `${baseUrl}country=${country}`;
 let req = new Request(url);
 let articles;
+let sources;
+let sourcesUrl = 'https://newsapi.org/v2/sources';
+let sourcesReq = new Request(sourcesUrl);
 
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').then(function (reg) {
-        console.log('service worker registered!');
-    }).catch(function(err) {
-        console.log('registration failed with error', err);
-    });
-}
-
+    //check serviceWorker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').then(function (reg) {
+            console.log('service worker registered!');
+            if(!navigator.serviceWorker.controller) {
+                return;
+            }
+        }).catch(function(err) {
+            console.log('registration failed with error', err);
+        });
+    }
+    
+    //fetch top headlines based on country
     fetch(req, {
         headers: new Headers({ 
-            'X-Api-Key': `${apiKey}`,
+            Authorization: ` Bearer ${apiKey}`,
         }),
         mode: 'cors'
     })
@@ -29,8 +40,42 @@ if ('serviceWorker' in navigator) {
     })
     .catch(err => console.error('error:', err));
 
+    //fetch list of sources
+    fetch(sourcesReq, {
+        headers: new Headers({ 
+            Authorization: ` Bearer ${apiKey}`,
+        }),
+        mode: 'cors'
+    })
+    .then(res => res.json())
+    .then(data => {
+        sources = data.sources;
+        return;
+    })
+    .catch( err => console.error('error:', err));
+    
+    //fill up the list of sources
+    function getSources() {
+       if(!sources) {
+           console.error('errorrrrr!');
+           return;
+       }
+
+        sources.forEach(source => {
+            const sourceId = document.createTextNode(source.name);
+            const sourcevalue = document.createTextNode(source.id);
+            const sourceElement = document.createElement('option');
+            sourceElement.setAttribute('value', sourcevalue.textContent);
+            sourceElement.appendChild(sourceId);
+            sourceForm.appendChild(sourceElement);
+        }); 
+    };
+    setTimeout(getSources, 3000);
+
+
+    // fill up the template
     function populateNews() {
-        if (articles === undefined || null) {
+        if (!articles) {
             const errorText = document.createElement('h3');
             const errorDiv = document.createElement('div');
             errorDiv.classList.add('error_message');
@@ -86,11 +131,10 @@ if ('serviceWorker' in navigator) {
         });
     }
 
-    
     setTimeout(populateNews, 	3000);
     
     // filter out headlines by country on click
-    button.addEventListener('click', (e) => {
+    countryButton.addEventListener('click', (e) => {
         // prevent the form from submitting on click
         e.preventDefault();
         
@@ -119,5 +163,33 @@ if ('serviceWorker' in navigator) {
 
         setTimeout(populateNews, 3000);
     });
+    
+    // choose a source
+    sourceButton.addEventListener('click', (e) => {
+        //prevent the form from submitting
+        e.preventDefault();
+        
+        //store new value of source
+        sourceValue = sourceForm.value;
+        //set sources
+        url = `${baseUrl}sources=${sourceValue}`;
+        req = new Request(url);
 
-    // window.onload = populateNews;
+        articlesDiv.innerHTML = '';
+
+        //fetch top headlines based on selected source
+        fetch(req, {
+            headers: new Headers({ 
+                Authorization: ` Bearer ${apiKey}`,
+            }),
+            mode: 'cors'
+        })
+        .then(res => res.json())
+        .then(data => {
+            articles = data.articles; 
+            return articles;
+        })
+        .catch(err => console.error('error:', err));
+        
+        setTimeout(populateNews, 3000);
+    })
